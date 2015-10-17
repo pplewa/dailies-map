@@ -1,4 +1,4 @@
 node_modules
 data
 *.png
-static/*.json
+static/segments.js
