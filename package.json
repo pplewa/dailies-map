@@ -1,0 +1,26 @@
+{
+  "name": "dailies-map",
+  "version": "0.0.1",
+  "description": "Generate Map with tracks",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pplewa/dailies-map.git"
+  },
+  "keywords": [
+    "Maps"
+  ],
+  "author": "plewus@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pplewa/dailies-map/issues"
+  },
+  "homepage": "https://github.com/pplewa/dailies-map#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "phantom": "^0.8.0"
+  }
+}
