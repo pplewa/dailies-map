@@ -21,6 +21,7 @@
   "homepage": "https://github.com/pplewa/dailies-map#readme",
   "dependencies": {
     "express": "^4.13.3",
-    "phantom": "^0.8.0"
+    "phantom": "^0.8.0",
+    "q": "^1.4.1"
   }
 }
