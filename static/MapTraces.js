@@ -69,3 +69,23 @@ MapTraces.prototype.addTracksToMap = function() {
 		});
 	}, this);
 }
+
+MapTraces.prototype.addMarkersToMap = function() {
+	var paths = [];
+	this.segments.forEach(function(segment) {
+		if(segment.type == 'place') {
+			paths.push(new google.maps.LatLng(
+				parseFloat(segment.place.location.lat), 
+				parseFloat(segment.place.location.lon)
+			));
+		}
+	});
+
+	paths.forEach(function(path, i) { 
+		var marker = new google.maps.Marker({
+			position: path,
+			map: this.map,
+			icon: 'pin.png'
+		});
+	}, this);
+}
