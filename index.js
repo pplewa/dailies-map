@@ -16,6 +16,8 @@ function convertToMap(segments) {
 				ph.exit();
 			});
 		});
+	}, {
+		path: '/usr/local/bin/'
 	});
 
 	return deferred.promise;
