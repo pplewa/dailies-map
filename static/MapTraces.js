@@ -25,8 +25,9 @@ MapTraces.prototype.centerMap = function() {
 	var centerlat = (maxlat + minlat) / 2;
 
 	var bounds = new google.maps.LatLngBounds(
-			new google.maps.LatLng(minlat, minlon),
-			new google.maps.LatLng(maxlat, maxlon));
+		new google.maps.LatLng(minlat, minlon),
+		new google.maps.LatLng(maxlat, maxlon)
+	);
 	this.map.setCenter(new google.maps.LatLng(centerlat, centerlon));
 	this.map.fitBounds(bounds);
 }

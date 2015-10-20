@@ -13,29 +13,6 @@
             font-family: helvetica, sans-serif;
             font-size: 14px;
         }
-        .legend {
-            list-style: none;
-            margin: 0;
-            padding: 7px;
-            position: absolute;
-            z-index: 1000;
-            font-size: 14px;
-            top: 21px;
-            left: 0;
-        }
-        .legend li {
-            line-height: 1.5;
-            background: rgba(255, 255, 255, 0.7);
-            padding: 2px 4px;
-        }
-        .legend span {
-            width: 6px;
-            height: 14px;
-            display: inline-block;
-            margin-right: 5px;
-            position: relative;
-            top: 2px;
-        }
     </style>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="MapTraces.js"></script>
@@ -43,8 +20,6 @@
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function(event) { 
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 8,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
                 disableDefaultUI: true
             });
             var mapTraces = new MapTraces(map, segments[0].segments);
@@ -54,7 +29,6 @@
     </script>
 </head>
 <body>
-    <ol id="legend" class="legend"></ol>
     <div id="map" style="width: 700px; height: 700px;"></div>
 </body>
 </html>
