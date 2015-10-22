@@ -1,4 +1,5 @@
 node_modules
 data
 static/map.png
+static/weekly.png
 static/segments.js

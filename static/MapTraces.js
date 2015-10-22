@@ -1,20 +1,43 @@
 function MapTraces(map, segments) {
 	this.map = map;
 	this.segments = segments;
+	this.colors = [
+		'#e51c23',
+		'#795548',
+		'#9c27b0',
+		'#3f51b5',
+		'#03a9f4',
+		'#8bc34a',
+		'#009688'
+	];
 	this.centerMap();
 }
 
 MapTraces.prototype.centerMap = function() {
 	var lats = [];
 	var longs = [];
-	this.segments.forEach(function(segment) {
-		(segment.activities || []).forEach(function(activity) {
-			activity.trackPoints.forEach(function(point, i) {
-				lats.push(point.lat);
-				longs.push(point.lon);
+
+	if (this.segments[0].segments) {
+		this.segments.forEach(function(daily){
+			daily.segments.forEach(function(segment) {
+				(segment.activities || []).forEach(function(activity) {
+					activity.trackPoints.forEach(function(point, i) {
+						lats.push(point.lat);
+						longs.push(point.lon);
+					});
+				});
 			});
 		});
-	});
+	} else {
+		this.segments.forEach(function(segment) {
+			(segment.activities || []).forEach(function(activity) {
+				activity.trackPoints.forEach(function(point, i) {
+					lats.push(point.lat);
+					longs.push(point.lon);
+				});
+			});
+		});
+	}
 
 	var minlat = Math.min.apply(Math, lats);
 	var maxlat = Math.max.apply(Math, lats);
@@ -71,6 +94,31 @@ MapTraces.prototype.addTracksToMap = function() {
 	}, this);
 }
 
+MapTraces.prototype.addWeeklyTracksToMap = function() {
+	this.segments.forEach(function(daily, index){
+		var paths = [];
+		daily.segments.forEach(function(segment) {
+			if(segment.type == 'move' && Array.isArray(segment.activities)) {
+				segment.activities.forEach(function(activity) {
+					activity.trackPoints.forEach(function(point, i) {
+						paths.push(
+							new google.maps.LatLng(parseFloat(point.lat), parseFloat(point.lon))
+						);
+					});
+				});
+			}
+		});
+
+		var polyline = new google.maps.Polyline({
+			path: paths,
+			strokeColor: this.colors[index],
+			strokeOpacity: 0.7,
+			strokeWeight: 5,
+			map: this.map
+		});
+	}, this);
+}
+
 MapTraces.prototype.addMarkersToMap = function() {
 	var paths = [];
 	this.segments.forEach(function(segment) {
@@ -89,4 +137,16 @@ MapTraces.prototype.addMarkersToMap = function() {
 			icon: 'pin.png'
 		});
 	}, this);
+}
+
+MapTraces.prototype.addLegend = function() {
+	var docFrag = document.createDocumentFragment();
+	this.segments.forEach(function(segment, index){
+		var date = segment.date.substr(6,2) + '/' + segment.date.substr(4,2) + '/' + segment.date.substr(0,4);
+		var listElement = document.createElement('li');
+		listElement.style.backgroundColor = this.colors[index];
+		listElement.innerHTML = date;
+		docFrag.appendChild(listElement);
+	}, this);
+	document.getElementById('legend').appendChild(docFrag);
 }
