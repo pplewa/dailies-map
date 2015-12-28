@@ -1,6 +1,6 @@
 {
   "name": "dailies-map",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generate Map with tracks",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,7 @@
   "homepage": "https://github.com/pplewa/dailies-map#readme",
   "dependencies": {
     "express": "^4.13.3",
-    "phantomjs": "^1.9.18",
+    "phantomjs": "1.9.18",
     "q": "^1.4.1"
   }
 }
