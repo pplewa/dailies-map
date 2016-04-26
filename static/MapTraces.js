@@ -86,7 +86,7 @@ MapTraces.prototype.addTracksToMap = function() {
 	paths.forEach(function(path, i) { 
 		var polyline = new google.maps.Polyline({
 			path: path,
-			strokeColor: activities[i] === 'walking' ? '#222222' : '#008000',
+			strokeColor: activities[i+1] === 'walking' ? '#008000' : '#222222',
 			strokeOpacity: 0.6,
 			strokeWeight: 4,
 			map: this.map
